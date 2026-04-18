@@ -52,7 +52,7 @@ def unificar_documentos():
         if not archivo_siesa: return
 
         messagebox.showinfo("Paso 2 de 2", "Selecciona el reporte del Cliente a Consolidar.")
-        archivo_cliente = filedialog.askopenfilename(title="Archivo ÉXITO", filetypes=[("Archivos", "*.xlsx *.xls *.csv")])
+        archivo_cliente = filedialog.askopenfilename(title="Archivo cliente", filetypes=[("Archivos", "*.xlsx *.xls *.csv")])
         if not archivo_cliente: return
 
         # Lectura
@@ -74,7 +74,7 @@ def unificar_documentos():
 
         # Renombrar columnas
         df_siesa = df_siesa.rename(columns={col: f"{col} siesa" for col in df_siesa.columns if col != clave_siesa})
-        df_cliente = df_cliente.rename(columns={col: f"{col} éxito" for col in df_cliente.columns if col != clave_cliente})
+        df_cliente = df_cliente.rename(columns={col: f"{col} cliente" for col in df_cliente.columns if col != clave_cliente})
 
         # Cruce
         df_siesa = df_siesa.rename(columns={clave_siesa: 'Referencia'})
@@ -97,7 +97,7 @@ def unificar_documentos():
             if not no_coincidencias.empty:
                 crear_tabla_excel(writer, 'Sin_Coincidencia', no_coincidencias)
 
-        messagebox.showinfo("¡Proceso Terminado!", "El cruce fue un éxito.\nEl archivo se abrirá automáticamente.")
+        messagebox.showinfo("¡Proceso Terminado!", "El cruce fue un cliente.\nEl archivo se abrirá automáticamente.")
         os.startfile(archivo_salida)
 
     except Exception as e:
